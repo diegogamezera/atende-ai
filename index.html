@@ -278,7 +278,7 @@
       <h1>Seu WhatsApp respondendo clientes <em>em 5 segundos</em>, 24 horas por dia</h1>
       <p>A AtendeAI transforma seu WhatsApp num vendedor incansavel. Responde, qualifica, agenda e vende — enquanto voce cuida do que importa.</p>
       <div class="hero-cta">
-        <a href="#demo" class="btn btn-whatsapp">Testar o Bot Agora</a>
+        <a href="" class="btn btn-whatsapp" id="heroTestBtn">Testar o Bot Agora</a>
         <a href="#planos" class="btn btn-outline">Ver Planos</a>
       </div>
       <div class="hero-stats">
@@ -538,20 +538,25 @@
   </footer>
 
   <script>
-    // Smooth scroll
+    // WhatsApp buttons
+    const WHATSAPP_NUMBER = '5547988111962';
+    const whatsappMsg = encodeURIComponent('Oi! Quero saber mais sobre a AtendeAI.');
+    document.getElementById('whatsappBtn').href = `https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMsg}`;
+    document.getElementById('whatsappBtn').target = '_blank';
+    document.getElementById('demoBtn').href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Quero testar o bot!')}`;
+    document.getElementById('demoBtn').target = '_blank';
+    document.getElementById('heroTestBtn').href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Oi! Quero testar o bot!')}`;
+    document.getElementById('heroTestBtn').target = '_blank';
+
+    // Smooth scroll (only for internal links, not WhatsApp)
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', e => {
+        if (a.href.includes('wa.me')) return;
         e.preventDefault();
         const target = document.querySelector(a.getAttribute('href'));
         if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
-
-    // WhatsApp button — update number when ready
-    const WHATSAPP_NUMBER = '5547988111962';
-    const whatsappMsg = encodeURIComponent('Oi! Quero saber mais sobre a AtendeAI.');
-    document.getElementById('whatsappBtn').href = `https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMsg}`;
-    document.getElementById('demoBtn').href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Quero testar o bot!')}`;
 
     // Animate on scroll
     const observer = new IntersectionObserver(entries => {
